@@ -2,7 +2,7 @@ Rasa NLU for Chinese
 
 TO DO LIST:
 
-1. Modify spacy to support Chinese
+1. Add module to use FudanNLP or THULAC to replace spacy to support Chinese
 
 2. Modify Rasa configuration for Chinese
 
