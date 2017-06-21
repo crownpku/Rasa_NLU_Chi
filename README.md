@@ -1,6 +1,9 @@
 Rasa NLU for Chinese
+
 TO DO LIST:
+
 1. Modify spacy to support Chinese
+
 2. Modify Rasa configuration for Chinese
 
 
