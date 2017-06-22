@@ -3,6 +3,7 @@ Rasa NLU for Chinese
 TO DO LIST:
 
 1. Add module to use FudanNLP or THULAC to replace spacy to support Chinese
+Or still use MITIE but train with Chinese corpus for new word embeddings (currently trying, takes a lot of time)
 
 2. Modify Rasa configuration for Chinese
 
