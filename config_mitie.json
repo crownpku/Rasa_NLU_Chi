@@ -1,6 +1,12 @@
 {
   "pipeline": "mitie",
+<<<<<<< HEAD
   "mitie_file": "./data/total_word_feature_extractor_chi.dat",
   "path" : "./models",
   "data" : "./data/examples/rasa/demo-rasa_chi.json"
+=======
+  "mitie_file": "./data/total_word_feature_extractor.dat",
+  "path" : "./models",
+  "data" : "./data/examples/rasa/demo-rasa.json"
+>>>>>>> 8968c0a88cd96bb6eb8d1a421c7bf6e3bf82321e
 }
