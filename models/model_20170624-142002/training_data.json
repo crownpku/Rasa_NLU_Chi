@@ -1,0 +1,141 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "text": "\u4f60\u597d", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "\u4f60\u597d\u554a", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "\u4f60\u597d\u5417", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "hello", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "hi", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "\u65e9\u4e0a\u597d", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "\u665a\u4e0a\u597d", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "\u55e8", 
+        "intent": "greet", 
+        "entities": []
+      }, 
+      {
+        "text": "\u662f\u7684", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u662f", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u5bf9\u7684", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u786e\u5b9e", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u597d", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "ok", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u597d\u7684", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u597d\u7684\uff0c\u8c22\u8c22\u4f60", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u5bf9\u7684", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u597d\u6ef4", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u597d\u554a", 
+        "intent": "affirm", 
+        "entities": []
+      }, 
+      {
+        "text": "\u6211\u60f3\u627e\u5730\u65b9\u5403\u996d", 
+        "intent": "restaurant_search", 
+        "entities": []
+      }, 
+      {
+        "text": "\u6211\u60f3\u5403\u5348\u996d", 
+        "intent": "restaurant_search", 
+        "entities": []
+      }, 
+      {
+        "text": "\u627e\u4e2a\u5403\u665a\u996d\u7684\u5e97", 
+        "intent": "restaurant_search", 
+        "entities": []
+      }, 
+      {
+        "text": "bye", 
+        "intent": "goodbye", 
+        "entities": []
+      }, 
+      {
+        "text": "\u518d\u89c1", 
+        "intent": "goodbye", 
+        "entities": []
+      }, 
+      {
+        "text": "886", 
+        "intent": "goodbye", 
+        "entities": []
+      }, 
+      {
+        "text": "\u62dc\u62dc", 
+        "intent": "goodbye", 
+        "entities": []
+      }, 
+      {
+        "text": "\u4e0b\u6b21\u89c1", 
+        "intent": "goodbye", 
+        "entities": []
+      }
+    ]
+  }
+}
