@@ -1,9 +1,12 @@
 *~
 *pyc
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.ipynb*
 =======
 >>>>>>> 8968c0a88cd96bb6eb8d1a421c7bf6e3bf82321e
+=======
+>>>>>>> upstream/master
 dist/
 data/*
 !data/examples
@@ -34,6 +37,7 @@ out/
 tmp_training_data.json
 .DS_Store
 <<<<<<< HEAD
+<<<<<<< HEAD
 rasa_nlu/tmbo_test.py
 .mypy_cache/
 =======
@@ -42,3 +46,10 @@ test_models/model_*
 rasa_nlu/tmbo_test.py
 .mypy_cache/
 >>>>>>> 8968c0a88cd96bb6eb8d1a421c7bf6e3bf82321e
+=======
+models/
+test_models/model_*
+
+rasa_nlu/tmbo_test.py
+.mypy_cache/
+>>>>>>> upstream/master

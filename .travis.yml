@@ -1,5 +1,9 @@
 language: python
 sudo: required
+<<<<<<< HEAD
+=======
+group: deprecated-2017Q2
+>>>>>>> upstream/master
 services:
   - docker
 cache:
