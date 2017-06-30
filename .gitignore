@@ -31,6 +31,7 @@ tmp_training_data.json
 .DS_Store
 test_models/model_*
 .ipynb_checkpoints/
+models/
 
 rasa_nlu/tmbo_test.py
 .mypy_cache/

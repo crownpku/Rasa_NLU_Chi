@@ -147,6 +147,18 @@
             "entity": "disease"
           }
         ]
+      },
+      {
+        "text": "我感冒了，该吃什么药", 
+        "intent": "medical", 
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "感冒",
+            "entity": "disease"
+          }
+        ]
       }
     ]
   }

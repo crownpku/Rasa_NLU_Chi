@@ -80,7 +80,7 @@ class JiebaMitieEntityExtractor(EntityExtractor):
 
     def train(self, training_data, mitie_file, num_threads):
         # type: (TrainingData, Text, Optional[int]) -> None
-        import jieba
+        import jieba, mitie
 
         trainer = mitie.ner_trainer(mitie_file)
         trainer.num_threads = num_threads
@@ -91,7 +91,7 @@ class JiebaMitieEntityExtractor(EntityExtractor):
             tokens = jieba.lcut(text)
             sample = mitie.ner_training_instance(tokens)
             for ent in example["entities"]:
-                start, end = MitieEntityExtractor.find_entity(ent, text)
+                start, end = JiebaMitieEntityExtractor.find_entity(ent, text)
                 sample.add_entity(list(range(start, end)), ent["entity"])
                 found_one_entity = True
 
@@ -111,15 +111,15 @@ class JiebaMitieEntityExtractor(EntityExtractor):
 
     @classmethod
     def load(cls, model_dir, entity_extractor_mitie):
-        # type: (Text, Text) -> MitieEntityExtractor
+        # type: (Text, Text) -> JiebaMitieEntityExtractor
         import mitie
 
         if model_dir and entity_extractor_mitie:
             entity_extractor_file = os.path.join(model_dir, entity_extractor_mitie)
             extractor = mitie.named_entity_extractor(entity_extractor_file)
-            return MitieEntityExtractor(extractor)
+            return JiebaMitieEntityExtractor(extractor)
         else:
-            return MitieEntityExtractor()
+            return JiebaMitieEntityExtractor()
 
     def persist(self, model_dir):
         # type: (Text) -> Dict[Text, Any]

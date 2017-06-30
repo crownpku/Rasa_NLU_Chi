@@ -28,7 +28,8 @@ class JiebaTokenizer(Tokenizer, Component):
         # type: (Text) -> List[Text]
         import jieba
 
-        return [w.decode('utf-8') for w in jieba.lcut(text.encode('utf-8'))]
+        #return [w.decode('utf-8') for w in jieba.lcut(text.encode('utf-8'))]
+        return [w for w in jieba.lcut(text.encode('utf-8'))]
 
     def process(self, text):
         # type: (Text) -> Dict[Text, Any]
@@ -44,7 +45,8 @@ class JiebaTokenizer(Tokenizer, Component):
         _text = text.encode('utf-8')
         offsets = []
         offset = 0
-        tokens = [w.decode('utf-8') for w in jieba.lcut(_text)]
+        #tokens = [w.decode('utf-8') for w in jieba.lcut(_text)]
+        tokens = [w for w in jieba.lcut(_text)]
         for tok in tokens:
             m = re.search(re.escape(tok), text[offset:], re.UNICODE)
             if m is None:
