@@ -110,11 +110,11 @@ class JiebaMitieEntityExtractor(EntityExtractor):
         }
 
     @classmethod
-    def load(cls, model_dir, entity_extractor_mitie):
+    def load(cls, model_dir, entity_extractor_jieba_mitie):
         # type: (Text, Text) -> JiebaMitieEntityExtractor
         import mitie
 
-        if model_dir and entity_extractor_mitie:
+        if model_dir and entity_extractor_jieba_mitie:
             entity_extractor_file = os.path.join(model_dir, entity_extractor_mitie)
             extractor = mitie.named_entity_extractor(entity_extractor_file)
             return JiebaMitieEntityExtractor(extractor)
