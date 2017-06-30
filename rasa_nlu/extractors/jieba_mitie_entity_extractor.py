@@ -115,7 +115,7 @@ class JiebaMitieEntityExtractor(EntityExtractor):
         import mitie
 
         if model_dir and entity_extractor_jieba_mitie:
-            entity_extractor_file = os.path.join(model_dir, entity_extractor_mitie)
+            entity_extractor_file = os.path.join(model_dir, entity_extractor_jieba_mitie)
             extractor = mitie.named_entity_extractor(entity_extractor_file)
             return JiebaMitieEntityExtractor(extractor)
         else:
@@ -127,6 +127,6 @@ class JiebaMitieEntityExtractor(EntityExtractor):
         if self.ner:
             entity_extractor_file = os.path.join(model_dir, "entity_extractor.dat")
             self.ner.save_to_disk(entity_extractor_file, pure_model=True)
-            return {"entity_extractor_jiebamitie": "entity_extractor.dat"}
+            return {"entity_extractor_jieba_mitie": "entity_extractor.dat"}
         else:
-            return {"entity_extractor_jiebamitie": None}
+            return {"entity_extractor_jieba_mitie": None}
