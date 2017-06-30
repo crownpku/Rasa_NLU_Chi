@@ -20,6 +20,7 @@ from rasa_nlu.classifiers.sklearn_intent_classifier import SklearnIntentClassifi
 from rasa_nlu.extractors.duckling_extractor import DucklingExtractor
 from rasa_nlu.extractors.entity_synonyms import EntitySynonymMapper
 from rasa_nlu.extractors.mitie_entity_extractor import MitieEntityExtractor
+from rasa_nlu.extractors.jieba_mitie_entity_extractor import JiebaMitieEntityExtractor
 from rasa_nlu.extractors.spacy_entity_extractor import SpacyEntityExtractor
 from rasa_nlu.extractors.crf_entity_extractor import CRFEntityExtractor
 from rasa_nlu.featurizers.mitie_featurizer import MitieFeaturizer
@@ -27,6 +28,7 @@ from rasa_nlu.featurizers.ngram_featurizer import NGramFeaturizer
 from rasa_nlu.featurizers.spacy_featurizer import SpacyFeaturizer
 from rasa_nlu.tokenizers.mitie_tokenizer import MitieTokenizer
 from rasa_nlu.tokenizers.spacy_tokenizer import SpacyTokenizer
+from rasa_nlu.tokenizers.jieba_tokenizer import JiebaTokenizer
 from rasa_nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
 from rasa_nlu.utils.mitie_utils import MitieNLP
 from rasa_nlu.utils.spacy_utils import SpacyNLP
@@ -37,8 +39,8 @@ if typing.TYPE_CHECKING:
 # Classes of all known components. If a new component should be added, its class needs to be listed here.
 component_classes = [
     SpacyNLP, SpacyEntityExtractor, SklearnIntentClassifier, SpacyFeaturizer,
-    MitieNLP, MitieEntityExtractor, MitieIntentClassifier, MitieFeaturizer,
-    MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer,
+    MitieNLP, MitieEntityExtractor, JiebaMitieEntityExtractor, MitieIntentClassifier, MitieFeaturizer,
+    MitieTokenizer, SpacyTokenizer, JiebaTokenizer, WhitespaceTokenizer,
     KeywordIntentClassifier, EntitySynonymMapper, NGramFeaturizer, DucklingExtractor, CRFEntityExtractor]
 
 # Mapping from a components name to its class to allow name based lookup.
@@ -82,6 +84,7 @@ registered_pipeline_templates = {
         "tokenizer_whitespace",
         "tokenizer_mitie",
         "tokenizer_spacy",
+        "tokenizer_jieba",
         "ner_mitie",
         "ner_crf",
         "ner_spacy",

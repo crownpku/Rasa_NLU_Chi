@@ -1,8 +1,8 @@
 {
   "pipeline": "mitie",
-  "mitie_file": "./data/total_word_feature_extractor.dat",
+  "mitie_file": "./data/total_word_feature_extractor_chi.dat",
   "path" : "./",
-  "data" : "./data/examples/rasa/demo-rasa.json",
+  "data" : "./data/examples/rasa/demo-rasa_chi.json",
   "storage": "gcs",
   "bucket_name": "rasa-models"
 }

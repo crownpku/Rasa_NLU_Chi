@@ -135,6 +135,18 @@
         "text": "下次见", 
         "intent": "goodbye", 
         "entities": []
+      },
+      {
+        "text": "感冒了怎么办", 
+        "intent": "medical", 
+        "entities": [
+          {
+            "start": 0,
+            "end": 2,
+            "value": "感冒",
+            "entity": "disease"
+          }
+        ]
       }
     ]
   }

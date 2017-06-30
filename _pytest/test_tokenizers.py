@@ -35,3 +35,9 @@ def test_mitie():
     assert tk.tokenize_with_offsets("hey ńöñàśçií how're you?") == (
         ['hey', 'ńöñàśçií', 'how', '\'re', 'you', '?'],
         [0, 4, 13, 16, 20, 23])
+
+def test_jieba():
+    from rasa_nlu.tokenizers.jieba_tokenizer import JiebaTokenizer
+    tk = JiebaTokenizer()
+    assert tk.tokenize(u'永和服装饰品有限公司') == [u'永和', u'服装', u'饰品', u'有限公司']
+    assert tk.tokenize_with_offsets(u'永和服装饰品有限公司') == ([u'永和', u'服装', u'饰品', u'有限公司'], [0, 2, 4, 6])
