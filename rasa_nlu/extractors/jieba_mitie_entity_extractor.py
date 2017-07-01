@@ -70,6 +70,7 @@ class JiebaMitieEntityExtractor(EntityExtractor):
         tokens, offsets = tk.tokenize_with_offsets(text)
         if ent["start"] not in offsets:
             message = "Invalid entity {} in example '{}': entities must span whole tokens".format(ent, text)
+            print(message)
             raise ValueError(message)
         start = offsets.index(ent["start"])
         _slice = text[ent["start"]:ent["end"]]

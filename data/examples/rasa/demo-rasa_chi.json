@@ -2,28 +2,28 @@
   "rasa_nlu_data": {
     "common_examples": [
       {
-        "text": "你好", 
-        "intent": "greet", 
+        "text": "你好",
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
-        "text": "你好啊", 
-        "intent": "greet", 
+        "text": "你好啊",
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
         "text": "你好吗",
-        "intent": "greet", 
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
-        "text": "hello", 
-        "intent": "greet", 
+        "text": "hello",
+        "intent": "greet",
         "entities": []
-      }, 
+      },
       {
-        "text": "hi", 
-        "intent": "greet", 
+        "text": "hi",
+        "intent": "greet",
         "entities": []
       },
       {
@@ -42,18 +42,18 @@
         "entities": []
       },
       {
-        "text": "是的", 
-        "intent": "affirm", 
+        "text": "是的",
+        "intent": "affirm",
         "entities": []
-      }, 
+      },
       {
-        "text": "是", 
-        "intent": "affirm", 
+        "text": "是",
+        "intent": "affirm",
         "entities": []
-      }, 
+      },
       {
-        "text": "对的", 
-        "intent": "affirm", 
+        "text": "对的",
+        "intent": "affirm",
         "entities": []
       },
       {
@@ -102,43 +102,57 @@
         "entities": []
       },
       {
-        "text": "我想吃午饭",
+        "text": "我想吃火锅啊",
         "intent": "restaurant_search",
-        "entities": []
+        "entities": [
+          {
+            "start": 2,
+            "end": 5,
+            "value": "吃火锅",
+            "entity": "food"
+          }
+        ]
       },
       {
-        "text": "找个吃晚饭的店",
+        "text": "找个吃拉面的店",
         "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 3,
+            "end": 5,
+            "value": "拉面",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "bye",
+        "intent": "goodbye",
         "entities": []
       },
       {
-        "text": "bye", 
-        "intent": "goodbye", 
-        "entities": []
-      }, 
-      {
-        "text": "再见", 
-        "intent": "goodbye", 
-        "entities": []
-      }, 
-      {
-        "text": "886", 
-        "intent": "goodbye", 
-        "entities": []
-      }, 
-      {
-        "text": "拜拜", 
-        "intent": "goodbye", 
-        "entities": []
-      }, 
-      {
-        "text": "下次见", 
-        "intent": "goodbye", 
+        "text": "再见",
+        "intent": "goodbye",
         "entities": []
       },
       {
-        "text": "感冒了怎么办", 
-        "intent": "medical", 
+        "text": "886",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "拜拜",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "下次见",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "感冒了怎么办",
+        "intent": "medical",
         "entities": [
           {
             "start": 0,
@@ -149,13 +163,25 @@
         ]
       },
       {
-        "text": "我感冒了，该吃什么药", 
-        "intent": "medical", 
+        "text": "我便秘了，该吃什么药",
+        "intent": "medical",
         "entities": [
           {
             "start": 1,
             "end": 3,
-            "value": "感冒",
+            "value": "便秘",
+            "entity": "disease"
+          }
+        ]
+      },
+      {
+        "text": "我胃痛，该吃什么药？",
+        "intent": "medical",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "胃痛",
             "entity": "disease"
           }
         ]
