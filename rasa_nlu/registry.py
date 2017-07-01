@@ -16,6 +16,7 @@ from typing import Type
 
 from rasa_nlu.classifiers.keyword_intent_classifier import KeywordIntentClassifier
 from rasa_nlu.classifiers.mitie_intent_classifier import MitieIntentClassifier
+from rasa_nlu.classifiers.jieba_mitie_intent_classifier import JiebaMitieIntentClassifier
 from rasa_nlu.classifiers.sklearn_intent_classifier import SklearnIntentClassifier
 from rasa_nlu.extractors.duckling_extractor import DucklingExtractor
 from rasa_nlu.extractors.entity_synonyms import EntitySynonymMapper
@@ -24,6 +25,7 @@ from rasa_nlu.extractors.jieba_mitie_entity_extractor import JiebaMitieEntityExt
 from rasa_nlu.extractors.spacy_entity_extractor import SpacyEntityExtractor
 from rasa_nlu.extractors.crf_entity_extractor import CRFEntityExtractor
 from rasa_nlu.featurizers.mitie_featurizer import MitieFeaturizer
+from rasa_nlu.featurizers.jieba_mitie_featurizer import JiebaMitieFeaturizer
 from rasa_nlu.featurizers.ngram_featurizer import NGramFeaturizer
 from rasa_nlu.featurizers.spacy_featurizer import SpacyFeaturizer
 from rasa_nlu.tokenizers.mitie_tokenizer import MitieTokenizer
@@ -39,7 +41,7 @@ if typing.TYPE_CHECKING:
 # Classes of all known components. If a new component should be added, its class needs to be listed here.
 component_classes = [
     SpacyNLP, SpacyEntityExtractor, SklearnIntentClassifier, SpacyFeaturizer,
-    MitieNLP, MitieEntityExtractor, JiebaMitieEntityExtractor, MitieIntentClassifier, MitieFeaturizer,
+    MitieNLP, MitieEntityExtractor, JiebaMitieEntityExtractor, MitieIntentClassifier, JiebaMitieIntentClassifier, MitieFeaturizer, JiebaMitieFeaturizer,
     MitieTokenizer, SpacyTokenizer, JiebaTokenizer, WhitespaceTokenizer,
     KeywordIntentClassifier, EntitySynonymMapper, NGramFeaturizer, DucklingExtractor, CRFEntityExtractor]
 
@@ -83,6 +85,7 @@ registered_pipeline_templates = {
         "nlp_mitie",
         "tokenizer_whitespace",
         "tokenizer_mitie",
+        "tokenizer_jieba",
         "tokenizer_spacy",
         "tokenizer_jieba",
         "ner_mitie",
@@ -91,11 +94,13 @@ registered_pipeline_templates = {
         "ner_duckling",
         "ner_synonyms",
         "intent_featurizer_mitie",
+        "intent_featurizer_jieba_mitie",
         "intent_featurizer_spacy",
         "intent_featurizer_ngrams",
         "intent_classifier_keyword",
         "intent_classifier_sklearn",
         "intent_classifier_mitie",
+        "intent_classifier_jieba_mitie",
     ]
 }
 
