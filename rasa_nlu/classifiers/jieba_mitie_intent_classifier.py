@@ -46,7 +46,7 @@ class JiebaMitieIntentClassifier(Component):
         trainer.num_threads = num_threads
         for example in training_data.intent_examples:
             #tokens = mitie.tokenize(example["text"])
-            tokens = jieba.lcut(example["text"])
+            tokens = jieba.lcut(example["text"]).encode('utf-8')
             trainer.add_labeled_text(tokens, example["intent"])
 
         if training_data.intent_examples:

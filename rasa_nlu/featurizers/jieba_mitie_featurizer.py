@@ -77,6 +77,6 @@ class JiebaMitieFeaturizer(Featurizer, Component):
 
         for idx, sentence in enumerate(sentences):
             #tokens = mitie.tokenize(sentence)
-            tokens = jieba.lcut(sentence)
+            tokens = jieba.lcut(sentence).encode('utf-8')
             X[idx, :] = self.features_for_tokens(tokens, feature_extractor)
         return X

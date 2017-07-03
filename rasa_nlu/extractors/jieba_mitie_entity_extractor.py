@@ -75,7 +75,7 @@ class JiebaMitieEntityExtractor(EntityExtractor):
         start = offsets.index(ent["start"])
         _slice = text[ent["start"]:ent["end"]]
         #val_tokens = mitie.tokenize(_slice)
-        val_tokens = jieba.lcut(_slice)
+        val_tokens = jieba.lcut(_slice).encode('utf-8')
         end = start + len(val_tokens)
         return start, end
 
@@ -89,7 +89,7 @@ class JiebaMitieEntityExtractor(EntityExtractor):
         for example in training_data.entity_examples:
             text = example["text"]
             #tokens = mitie.tokenize(text)
-            tokens = jieba.lcut(text)
+            tokens = jieba.lcut(text).encode('utf-8')
             sample = mitie.ner_training_instance(tokens)
             for ent in example["entities"]:
                 start, end = JiebaMitieEntityExtractor.find_entity(ent, text)
