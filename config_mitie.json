@@ -2,5 +2,5 @@
   "pipeline": "mitie",
   "mitie_file": "./data/total_word_feature_extractor_chi.dat",
   "path" : "./models",
-  "data" : "./data/examples/rasa/demo-rasa_chi.json"
+  "data" : "./data/examples/rasa/demo-rasa_chi_noentity.json"
 }

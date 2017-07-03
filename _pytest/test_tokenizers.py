@@ -41,3 +41,6 @@ def test_jieba():
     tk = JiebaTokenizer()
     assert tk.tokenize(u'永和服装饰品有限公司') == [u'永和', u'服装', u'饰品', u'有限公司']
     assert tk.tokenize_with_offsets(u'永和服装饰品有限公司') == ([u'永和', u'服装', u'饰品', u'有限公司'], [0, 2, 4, 6])
+    
+    
+test_jieba()
