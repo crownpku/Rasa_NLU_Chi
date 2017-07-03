@@ -7,3 +7,5 @@ future==0.16.0
 six==1.10.0
 jsonschema==2.6.0
 jieba==0.38
+requests==2.14.2
+tqdm==4.11.2
