@@ -126,6 +126,38 @@
         ]
       },
       {
+        "text": "这附近哪里有吃麻辣烫的地方",
+        "intent": "restaurant_search",
+        "entities": [
+          {
+            "start": 7,
+            "end": 10,
+            "value": "麻辣烫",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "附近有什么好吃的地方吗",
+        "intent": "restaurant_search",
+        "entities": []
+      },
+      {
+        "text": "肚子饿了，推荐一家吃放的地儿呗",
+        "intent": "restaurant_search",
+        "entities": []
+      },
+      {
+        "text": "带老婆孩子去哪里吃饭比较好",
+        "intent": "restaurant_search",
+        "entities": []
+      },
+      {
+        "text": "想去一家有情调的餐厅",
+        "intent": "restaurant_search",
+        "entities": []
+      },
+      {
         "text": "bye",
         "intent": "goodbye",
         "entities": []
@@ -185,6 +217,62 @@
             "entity": "disease"
           }
         ]
+      },
+      {
+        "text": "一直打喷嚏怎么办",
+        "intent": "medical",
+        "entities": [
+          {
+            "start": 2,
+            "end": 5,
+            "value": "打喷嚏",
+            "entity": "disease"
+          }
+        ]
+      },
+      {
+        "text": "父母都有高血压，我会遗传吗",
+        "intent": "medical",
+        "entities": [
+          {
+            "start": 4,
+            "end": 7,
+            "value": "高血压",
+            "entity": "disease"
+          }
+        ]
+      },
+      {
+        "text": "我生病了",
+        "intent": "medical",
+        "entities": []
+      },
+      {
+        "text": "头上烫烫的，感觉发烧了",
+        "intent": "medical",
+        "entities": [
+          {
+            "start": 8,
+            "end": 10,
+            "value": "发烧",
+            "entity": "disease"
+          }
+        ]
+      },
+      {
+        "text": "头很疼该怎么办",
+        "intent": "medical",
+        "entities": []
+      },
+      {
+        "text": "减肥有什么好方法吗？",
+        "intent": "medical",
+        "entities": []
+      },
+      {
+        "text": "怎样良好的生活习惯才能预防生病呢",
+        "intent": "medical",
+        "entities": []
       }
     ]
   }
