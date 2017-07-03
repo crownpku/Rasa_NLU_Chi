@@ -32,7 +32,7 @@ or
 ```
 python -m rasa_nlu.train -c config_mitie_sklearn_chi.json
 ```
-This will save you model at /models
+This will save your model at /models
 
 4. Run the rasa_nlu server:
 ```
