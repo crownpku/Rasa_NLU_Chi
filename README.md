@@ -69,6 +69,7 @@ $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？"}' |
 }
 ```
 
+<<<<<<< HEAD
 
 TO DO LIST:
 
@@ -88,4 +89,5 @@ Done
 4. Improve intent classification module
 
 See issues
+
 

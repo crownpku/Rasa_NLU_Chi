@@ -20,7 +20,7 @@ DEFAULT_CONFIG = {
     "config": DEFAULT_CONFIG_LOCATION,
     "data": None,
     "emulate": None,
-    "language": "en",
+    "language": "zh",
     "log_file": None,
     "log_level": 'INFO',
     "mitie_file": os.path.join("data", "total_word_feature_extractor.dat"),

@@ -32,6 +32,6 @@ tmp_training_data.json
 test_models/model_*
 .ipynb_checkpoints/
 models/
-
+nohup.out
 rasa_nlu/tmbo_test.py
 .mypy_cache/
