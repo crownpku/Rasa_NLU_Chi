@@ -1,9 +1,6 @@
 language: python
 sudo: required
-<<<<<<< HEAD
-=======
 group: deprecated-2017Q2
->>>>>>> upstream/master
 services:
   - docker
 cache:
@@ -43,7 +40,6 @@ install:
 script: py.test _pytest --cov rasa_nlu --pep8 -v
 after_success:
 - coveralls
-- ./build_push_docker.sh
 deploy:
   provider: pypi
   user: amn41
