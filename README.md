@@ -1,14 +1,14 @@
-Rasa NLU for Chinese, a fork from RasaHQ/rasa_nlu.
+#Rasa NLU for Chinese, a fork from RasaHQ/rasa_nlu.
 
-Files you should have:
+###Files you should have:
 
-1. data/total_word_feature_extractor_chi.dat 
+* data/total_word_feature_extractor_chi.dat 
 Trained from Chinese corpus by MITIE wordrep tools (takes 2-3 days for training)
 
-2. data/examples/rasa/demo-rasa_chi.json
+* data/examples/rasa/demo-rasa_chi.json
 Should add as much examples as possible.
 
-Usage:
+###Usage:
 
 1. Clone this project, and run
 ```
@@ -70,7 +70,7 @@ $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？"}' |
 ```
 
 
-TO DO LIST:
+###TO DO LIST:
 
 1. ~~Add module to use FudanNLP or THULAC to replace spacy to support Chinese~~
 Or still use MITIE but train with Chinese corpus for new word embeddings (looking for more Chinese corpus and clean)
@@ -87,7 +87,7 @@ Done
 
 4. Improve intent classification module
 
-See issues
+Done
 
 
 
