@@ -34,22 +34,22 @@ Use MITIE+Jieba+sklearn (config_jieba_mitie_sklearn.json):
 
 3. Train model by running:
 ```
-python -m rasa_nlu.train -c config_mitie_chi.json
+python -m rasa_nlu.train -c config_jieba_mitie.json
 ```
 or
 ```
-python -m rasa_nlu.train -c config_mitie_sklearn_chi.json
+python -m rasa_nlu.train -c config_jieba_mitie_sklearn.json
 ```
 This will save your model at /models
 
 
 4. Run the rasa_nlu server:
 ```
-python -m rasa_nlu.server -c config_mitie_chi.json --server_model_dirs=./model_20170701_mitie_chi
+python -m rasa_nlu.server -c config_jieba_mitie.json --server_model_dirs=./model_20170701_mitie_chi
 ```
 or
 ```
-python -m rasa_nlu.server -c config_mitie_sklearn_chi.json --server_model_dirs=./model_20170701_mitie_sklearn_chi
+python -m rasa_nlu.server -c config_jieba_mitie_sklearn.json --server_model_dirs=./model_20170701_mitie_sklearn_chi
 ```
 Change the configure json file and model path to your own.
 
@@ -80,25 +80,7 @@ $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？"}' |
 ```
 
 
-### TO DO LIST:
 
-1. ~~Add module to use FudanNLP or THULAC to replace spacy to support Chinese~~
-
-Or still use MITIE but train with Chinese corpus for new word embeddings (looking for more Chinese corpus and clean)
-
-Done
-
-2. Modify Rasa configuration for Chinese
-
-Done
-
-3. Add jieba as Chinese tokenizor into pipeline (training demos, user messages)
-
-Done
-
-4. Improve intent classification module
-
-Done
 
 
 
