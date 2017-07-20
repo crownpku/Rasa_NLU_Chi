@@ -8,10 +8,8 @@ import numpy as np
 import pytest
 
 from rasa_nlu.tokenizers.mitie_tokenizer import MitieTokenizer
-from rasa_nlu.tokenizers.jieba_tokenizer import JiebaTokenizer
 from rasa_nlu.tokenizers.spacy_tokenizer import SpacyTokenizer
 from rasa_nlu.training_data import Message
-
 
 
 @pytest.mark.parametrize("sentence, expected", [
@@ -62,19 +60,6 @@ def test_ngram_featurizer(spacy_nlp):
                            max_number_of_ngrams=10)
     assert len(ftr.all_ngrams) > 0
     assert ftr.best_num_ngrams > 0
-
-def test_jieba_mitie_featurizer(mitie_feature_extractor, default_config):
-    from rasa_nlu.featurizers.jieba_mitie_featurizer import JiebaMitieFeaturizer
-
-    default_config["mitie_file"] = os.environ.get('MITIE_FILE')
-    if not default_config["mitie_file"] or not os.path.isfile(default_config["mitie_file"]):
-        default_config["mitie_file"] = os.path.join("data", "total_word_feature_extractor_chi.dat")
-
-    ftr = JiebaMitieFeaturizer.load()
-    sentence = "我想去吃拉面"
-    tokens = JiebaTokenizer().tokenize(sentence)
-    vecs = ftr.features_for_tokens(tokens, mitie_feature_extractor)
-    #assert np.allclose(vecs[:5], np.array([0., -4.4551446, 0.26073121, -1.46632245, -1.84205751]), atol=1e-5)
 
 
 @pytest.mark.parametrize("sentence, expected, labeled_tokens", [

@@ -74,15 +74,6 @@ installing spacy just requires (for more information visit the `spacy docu <http
     pip install -U spacy
     python -m spacy download en
 
-<<<<<<< HEAD
-If you haven't used ``numpy/scipy`` before, it is highly recommended that you use conda.
-steps are
-
-- install `anaconda <https://www.continuum.io/downloads>`_
-- ``conda install scikit-learn``
-
-otherwise if you know what you're doing, you can also just ``pip install -U scikit-learn``
-=======
 If you haven't used ``numpy/scipy`` before, it is highly recommended that you install and use `Anaconda <https://www.continuum.io/downloads>`_ .
 
 Using Anaconda:
@@ -98,7 +89,6 @@ Using pip:
 
     pip install -U scikit-learn scipy sklearn-crfsuite
 
->>>>>>> upstream/master
 
 Option 3 : sklearn + MITIE
 --------------------------

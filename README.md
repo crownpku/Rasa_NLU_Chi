@@ -6,6 +6,8 @@
 
 Trained from Chinese corpus by MITIE wordrep tools (takes 2-3 days for training)
 
+For training, please build the [MITIE Wordrep Tool](https://github.com/mit-nlp/MITIE/tree/master/tools/wordrep). Note that Chinese corpus should be tokenized first before feeding into the tool for training. Close-domain corpus that best matches user case works best.
+
 * data/examples/rasa/demo-rasa_chi.json
 
 Should add as much examples as possible.
@@ -21,13 +23,13 @@ python setup.py install
 
 Currently for Chinese we have two pipelines:
 
-Use MITIE+Jieba (config_mitie_chi.json):
+Use MITIE+Jieba (config_jieba_mitie.json):
 
-["nlp_mitie", "tokenizer_jieba", "ner_jieba_mitie", "ner_synonyms", "intent_classifier_jieba_mitie"]
+["nlp_mitie", "tokenizer_jieba", "ner_mitie", "ner_synonyms", "intent_classifier_mitie"]
 
-Use MITIE+Jieba+sklearn (config_mitie_sklearn_chi.json):
+Use MITIE+Jieba+sklearn (config_jieba_mitie_sklearn.json):
 
-["nlp_mitie", "tokenizer_jieba", "ner_jieba_mitie", "ner_synonyms", "intent_featurizer_jieba_mitie", "intent_classifier_sklearn"]
+["nlp_mitie", "tokenizer_jieba", "ner_mitie", "ner_synonyms", "intent_featurizer_mitie", "intent_classifier_sklearn"]
 
 
 3. Train model by running:

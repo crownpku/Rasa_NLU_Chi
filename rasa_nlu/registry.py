@@ -16,16 +16,13 @@ from typing import Type
 
 from rasa_nlu.classifiers.keyword_intent_classifier import KeywordIntentClassifier
 from rasa_nlu.classifiers.mitie_intent_classifier import MitieIntentClassifier
-from rasa_nlu.classifiers.jieba_mitie_intent_classifier import JiebaMitieIntentClassifier
 from rasa_nlu.classifiers.sklearn_intent_classifier import SklearnIntentClassifier
 from rasa_nlu.extractors.duckling_extractor import DucklingExtractor
 from rasa_nlu.extractors.entity_synonyms import EntitySynonymMapper
 from rasa_nlu.extractors.mitie_entity_extractor import MitieEntityExtractor
-from rasa_nlu.extractors.jieba_mitie_entity_extractor import JiebaMitieEntityExtractor
 from rasa_nlu.extractors.spacy_entity_extractor import SpacyEntityExtractor
 from rasa_nlu.extractors.crf_entity_extractor import CRFEntityExtractor
 from rasa_nlu.featurizers.mitie_featurizer import MitieFeaturizer
-from rasa_nlu.featurizers.jieba_mitie_featurizer import JiebaMitieFeaturizer
 from rasa_nlu.featurizers.ngram_featurizer import NGramFeaturizer
 from rasa_nlu.featurizers.regex_featurizer import RegexFeaturizer
 from rasa_nlu.featurizers.spacy_featurizer import SpacyFeaturizer
@@ -44,11 +41,11 @@ if typing.TYPE_CHECKING:
 # Classes of all known components. If a new component should be added, its class needs to be listed here.
 component_classes = [
     SpacyNLP, MitieNLP,
-    SpacyEntityExtractor, MitieEntityExtractor, DucklingExtractor, CRFEntityExtractor, JiebaMitieEntityExtractor,
+    SpacyEntityExtractor, MitieEntityExtractor, DucklingExtractor, CRFEntityExtractor,
     EntitySynonymMapper,
-    SpacyFeaturizer, MitieFeaturizer, NGramFeaturizer, RegexFeaturizer, JiebaMitieFeaturizer,
+    SpacyFeaturizer, MitieFeaturizer, NGramFeaturizer, RegexFeaturizer,
     MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer, JiebaTokenizer,
-    SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier, JiebaMitieIntentClassifier
+    SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier,
 ]
 
 # Mapping from a components name to its class to allow name based lookup.
@@ -94,33 +91,21 @@ registered_pipeline_templates = {
         "nlp_spacy",
         "nlp_mitie",
         "tokenizer_whitespace",
+        "tokenizer_jieba",
         "tokenizer_mitie",
-        "tokenizer_jieba",
         "tokenizer_spacy",
-<<<<<<< HEAD
-        "tokenizer_jieba",
-=======
         "intent_featurizer_mitie",
         "intent_featurizer_spacy",
         "intent_featurizer_ngrams",
         "intent_entity_featurizer_regex",
->>>>>>> upstream/master
         "ner_mitie",
         "ner_crf",
         "ner_spacy",
         "ner_duckling",
         "ner_synonyms",
-<<<<<<< HEAD
-        "intent_featurizer_mitie",
-        "intent_featurizer_jieba_mitie",
-        "intent_featurizer_spacy",
-        "intent_featurizer_ngrams",
-=======
->>>>>>> upstream/master
         "intent_classifier_keyword",
         "intent_classifier_sklearn",
         "intent_classifier_mitie",
-        "intent_classifier_jieba_mitie",
     ]
 }
 
