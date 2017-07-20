@@ -2,13 +2,13 @@
 
 ### Files you should have:
 
-* data/total_word_feature_extractor_chi.dat
+* data/total_word_feature_extractor_zh.dat
 
 Trained from Chinese corpus by MITIE wordrep tools (takes 2-3 days for training)
 
 For training, please build the [MITIE Wordrep Tool](https://github.com/mit-nlp/MITIE/tree/master/tools/wordrep). Note that Chinese corpus should be tokenized first before feeding into the tool for training. Close-domain corpus that best matches user case works best.
 
-* data/examples/rasa/demo-rasa_chi.json
+* data/examples/rasa/demo-rasa_zh.json
 
 Should add as much examples as possible.
 
