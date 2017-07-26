@@ -1,4 +1,6 @@
+
 # Rasa NLU for Chinese, a fork from RasaHQ/rasa_nlu.
+
 
 ### Files you should have:
 
@@ -78,9 +80,3 @@ $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？"}' |
     "text": "\u6211\u53d1\u70e7\u4e86\u8be5\u5403\u4ec0\u4e48\u836f\uff1f"
 }
 ```
-
-
-
-
-
-
