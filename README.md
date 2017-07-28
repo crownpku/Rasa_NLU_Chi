@@ -3,6 +3,10 @@
 
 ## [中文Blog](http://www.crownpku.com/2017/07/27/%E7%94%A8Rasa_NLU%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AD%E6%96%87NLU%E7%B3%BB%E7%BB%9F.html)
 
+![](http://www.crownpku.com/images/201707/5.jpg)
+![](http://www.crownpku.com/images/201707/4.jpg)
+
+
 ### Files you should have:
 
 * data/total_word_feature_extractor_zh.dat
@@ -83,3 +87,5 @@ $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？"}' |
     "text": "\u6211\u53d1\u70e7\u4e86\u8be5\u5403\u4ec0\u4e48\u836f\uff1f"
 }
 ```
+
+
