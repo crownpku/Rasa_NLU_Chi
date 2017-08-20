@@ -9,5 +9,5 @@
   "language": "zh",
   "mitie_file": "./data/total_word_feature_extractor_zh.dat",
   "path" : "./models",
-  "data" : "./data/examples/rasa/demo-rasa_zh.json"
+  "data" : "./data/examples/rasa/demo-rasa_zh_medical.json"
 }
