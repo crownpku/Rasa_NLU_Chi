@@ -33,5 +33,6 @@ test_models/model_*
 .ipynb_checkpoints/
 models/
 nohup.out
+test_projects/test_project_*
 rasa_nlu/tmbo_test.py
 .mypy_cache/
