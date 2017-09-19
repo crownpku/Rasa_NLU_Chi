@@ -37,35 +37,35 @@ python setup.py install
 
 Currently for Chinese we have two pipelines:
 
-Use MITIE+Jieba (config_jieba_mitie.json):
+Use MITIE+Jieba (sample_configs/config_jieba_mitie.json):
 
 ["nlp_mitie", "tokenizer_jieba", "ner_mitie", "ner_synonyms", "intent_classifier_mitie"]
 
-Use MITIE+Jieba+sklearn (config_jieba_mitie_sklearn.json):
+RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.json):
 
 ["nlp_mitie", "tokenizer_jieba", "ner_mitie", "ner_synonyms", "intent_featurizer_mitie", "intent_classifier_sklearn"]
 
 
 3. Train model by running:
 ```
-python -m rasa_nlu.train -c config_jieba_mitie.json
+python -m rasa_nlu.train -c sample_configs/config_jieba_mitie.json
 ```
 or
 ```
-python -m rasa_nlu.train -c config_jieba_mitie_sklearn.json
+python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.json
 ```
 This will save your model at /models
 
 
 4. Run the rasa_nlu server:
 ```
-python -m rasa_nlu.server -c config_jieba_mitie.json --server_model_dirs=./model_20170701_mitie_chi
+python -m rasa_nlu.server -c sample_configs/config_jieba_mitie.json -p ./model_20170701_mitie_chi
 ```
 or
 ```
-python -m rasa_nlu.server -c config_jieba_mitie_sklearn.json --server_model_dirs=./model_20170701_mitie_sklearn_chi
+python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.json -p ./model_20170701_mitie_sklearn_chi
 ```
-Change the configure json file and model path to your own.
+Change the configure json file and model path to your own. If no model path is used (-p) then the most recent trained model will be used.
 
 
 5. Open a new terminal and now you can curl results from the server, for example:
