@@ -47,48 +47,70 @@ RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.
 
 
 3. Train model by running:
-```
-python -m rasa_nlu.train -c sample_configs/config_jieba_mitie.json
-```
-or
+
 ```
 python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.json
 ```
-This will save your model at /models
+
+If you specify your project name in configure file, this will save your model at /models/your_project_name. 
+
+Otherwise, your model will be saved at /models/default
+
 
 
 4. Run the rasa_nlu server:
+
+
 ```
-python -m rasa_nlu.server -c sample_configs/config_jieba_mitie.json -p ./model_20170701_mitie_chi
+python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.json
 ```
-or
-```
-python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.json -p ./model_20170701_mitie_sklearn_chi
-```
-Change the configure json file and model path to your own. If no model path is used (-p) then the most recent trained model will be used.
 
 
 5. Open a new terminal and now you can curl results from the server, for example:
 
+
+
 ```
-$ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？"}' | python -mjson.tool
+$ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？", "project": "rasa_nlu_test", "model": "model_20170921-170911"}' | python -mjson.tool
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100   364  100   326  100    38  98519  11483 --:--:-- --:--:-- --:--:--  106k
+100   652    0   552  100   100    157     28  0:00:03  0:00:03 --:--:--   157
 {
     "entities": [
         {
             "end": 3,
             "entity": "disease",
-            "extractor": "ner_jieba_mitie",
+            "extractor": "ner_mitie",
             "start": 1,
             "value": "\u53d1\u70e7"
         }
     ],
     "intent": {
-        "confidence": 0.02073156639321614,
+        "confidence": 0.5397186422631861,
         "name": "medical"
     },
+    "intent_ranking": [
+        {
+            "confidence": 0.5397186422631861,
+            "name": "medical"
+        },
+        {
+            "confidence": 0.16206323981749196,
+            "name": "restaurant_search"
+        },
+        {
+            "confidence": 0.1212448457737397,
+            "name": "affirm"
+        },
+        {
+            "confidence": 0.10333600028547868,
+            "name": "goodbye"
+        },
+        {
+            "confidence": 0.07363727186010374,
+            "name": "greet"
+        }
+    ],
     "text": "\u6211\u53d1\u70e7\u4e86\u8be5\u5403\u4ec0\u4e48\u836f\uff1f"
 }
 ```

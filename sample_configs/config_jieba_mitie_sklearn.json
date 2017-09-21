@@ -1,4 +1,5 @@
 {
+  "name": "rasa_nlu_test",
   "pipeline": ["nlp_mitie",
         "tokenizer_jieba",
         "ner_mitie",
@@ -9,5 +10,5 @@
   "language": "zh",
   "mitie_file": "./data/total_word_feature_extractor_zh.dat",
   "path" : "./models",
-  "data" : "./data/examples/rasa/demo-rasa_zh_medical.json"
+  "data" : "./data/examples/rasa/demo-rasa_zh.json"
 }
