@@ -82,7 +82,7 @@ $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？", "p
             "entity": "disease",
             "extractor": "ner_mitie",
             "start": 1,
-            "value": "\u53d1\u70e7"
+            "value": "发烧"
         }
     ],
     "intent": {
@@ -111,6 +111,6 @@ $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？", "p
             "name": "greet"
         }
     ],
-    "text": "\u6211\u53d1\u70e7\u4e86\u8be5\u5403\u4ec0\u4e48\u836f\uff1f"
+    "text": "我发烧了该吃什么药？"
 }
 ```
