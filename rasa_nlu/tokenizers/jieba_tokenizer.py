@@ -45,7 +45,7 @@ class JiebaTokenizer(Tokenizer, Component):
         # type: (Text) -> List[Token]
         import jieba
 
-        tokenized = jieba.tokenize(text.encode('utf-8'))
+        tokenized = jieba.tokenize(text)
         tokens = [Token(word, start) for (word, start, end) in tokenized]
         return tokens
 
