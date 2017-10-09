@@ -44,7 +44,7 @@ class JiebaTokenizer(Tokenizer, Component):
     def tokenize(self, text):
         # type: (Text) -> List[Token]
         import jieba
-
+        """
         words = jieba.lcut(text.encode('utf-8'))
         running_offset = 0
         tokens = []
@@ -53,4 +53,8 @@ class JiebaTokenizer(Tokenizer, Component):
             word_len = len(word)
             running_offset = word_offset + word_len
             tokens.append(Token(word, word_offset))
+        """
+        tokenized = jieba.tokenize(text)
+        tokens = [Token(word, start) for (word, start, end) in tokenized]
+        
         return tokens
