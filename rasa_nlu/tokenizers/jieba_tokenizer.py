@@ -23,6 +23,7 @@ class JiebaTokenizer(Tokenizer, Component):
     
     def __init__(self):
         pass
+       
     
     @classmethod
     def required_packages(cls):
@@ -33,6 +34,9 @@ class JiebaTokenizer(Tokenizer, Component):
         # type: (TrainingData, RasaNLUConfig, **Any) -> None
         if config['language'] != 'zh':
             raise Exception("tokenizer_jieba is only used for Chinese. Check your configure json file.")
+        # Add jieba userdict file
+        if config['jieba_userdic'] != 'None':
+            jieba.load_userdict(config['jieba_userdic'])
         for example in training_data.training_examples:
             example.set("tokens", self.tokenize(example.text))
 
@@ -44,11 +48,6 @@ class JiebaTokenizer(Tokenizer, Component):
     def tokenize(self, text):
         # type: (Text) -> List[Token]
         import jieba
-        
-        # Add jieba userdict file
-        if config['jieba_userdic'] != 'None':
-            jieba.load_userdict(config['jieba_userdic'])
-            
         tokenized = jieba.tokenize(text)
         tokens = [Token(word, start) for (word, start, end) in tokenized]
 
