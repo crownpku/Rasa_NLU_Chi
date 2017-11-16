@@ -44,7 +44,11 @@ class JiebaTokenizer(Tokenizer, Component):
     def tokenize(self, text):
         # type: (Text) -> List[Token]
         import jieba
-
+        
+        # Add jieba userdict file
+        if config['jieba_userdic'] != 'None':
+            jieba.load_userdict(config['jieba_userdic'])
+            
         tokenized = jieba.tokenize(text)
         tokens = [Token(word, start) for (word, start, end) in tokenized]
 
