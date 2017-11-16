@@ -48,6 +48,8 @@ RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.
 
 3. Train model by running:
 
+**To use Jieba User Defined Dictionary, please put your dictionary files under rasa_nlu_chi/jieba_userdict/ before you do training and testing.**
+
 ```
 python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.json
 ```
@@ -55,6 +57,7 @@ python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.json
 If you specify your project name in configure file, this will save your model at /models/your_project_name. 
 
 Otherwise, your model will be saved at /models/default
+
 
 
 
