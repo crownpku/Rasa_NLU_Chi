@@ -60,7 +60,6 @@ Otherwise, your model will be saved at /models/default
 
 
 
-
 4. Run the rasa_nlu server:
 
 
