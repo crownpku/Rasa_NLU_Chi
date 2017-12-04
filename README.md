@@ -46,6 +46,7 @@ RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.
 ["nlp_mitie", "tokenizer_jieba", "ner_mitie", "ner_synonyms", "intent_featurizer_mitie", "intent_classifier_sklearn"]
 
 
+
 3. Train model by running:
 
 **To use Jieba User Defined Dictionary, please put your dictionary files under rasa_nlu_chi/jieba_userdict/ before you do training and testing.**

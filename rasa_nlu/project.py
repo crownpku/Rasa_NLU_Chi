@@ -4,6 +4,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import datetime
+import glob
 
 import os
 import logging
@@ -183,5 +184,5 @@ class Project(object):
             return []
         else:
             return [model
-                    for model in os.listdir(path)
-                    if model.startswith(MODEL_NAME_PREFIX)]
+                    for model in glob.glob(os.path.join(path, '*'))
+                    if os.path.isdir(model)]
