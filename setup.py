@@ -33,6 +33,8 @@ extras_requires = {
     'test': tests_requires,
     'spacy': ["sklearn", "scipy"],
     'mitie': ["mitie"],
+    'jieba': ["jieba"],
+    'yaha': ["yaha"],
 }
 
 setup(

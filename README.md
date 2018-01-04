@@ -63,7 +63,6 @@ Otherwise, your model will be saved at /models/default
 
 4. Run the rasa_nlu server:
 
-
 ```
 python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.json
 ```
