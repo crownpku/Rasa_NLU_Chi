@@ -70,8 +70,6 @@ python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.json
 
 5. Open a new terminal and now you can curl results from the server, for example:
 
-
-
 ```
 $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？", "project": "rasa_nlu_test", "model": "model_20170921-170911"}' | python -mjson.tool
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
