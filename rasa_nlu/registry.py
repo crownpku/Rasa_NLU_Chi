@@ -36,7 +36,7 @@ from rasa_nlu.model import Metadata
 from rasa_nlu.tokenizers.mitie_tokenizer import MitieTokenizer
 from rasa_nlu.tokenizers.spacy_tokenizer import SpacyTokenizer
 from rasa_nlu.tokenizers.jieba_tokenizer import JiebaTokenizer
-from rasa_nlu.tokenizers.yaha_tokenizer import YahaTokenizer
+#from rasa_nlu.tokenizers.yaha_tokenizer import YahaTokenizer
 from rasa_nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
 from rasa_nlu.utils.mitie_utils import MitieNLP
 from rasa_nlu.utils.spacy_utils import SpacyNLP

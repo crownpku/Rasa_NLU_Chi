@@ -34,7 +34,7 @@ extras_requires = {
     'spacy': ["sklearn", "scipy"],
     'mitie': ["mitie"],
     'jieba': ["jieba"],
-    'yaha': ["yaha"],
+    #'yaha': ["yaha"],
 }
 
 setup(
