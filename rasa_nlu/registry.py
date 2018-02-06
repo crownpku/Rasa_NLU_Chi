@@ -102,7 +102,7 @@ registered_pipeline_templates = {
         "nlp_mitie",
         "tokenizer_whitespace",
         "tokenizer_jieba",
-        "tokenizer_yaha",
+        #"tokenizer_yaha",
         "tokenizer_mitie",
         "tokenizer_spacy",
         "intent_featurizer_mitie",
