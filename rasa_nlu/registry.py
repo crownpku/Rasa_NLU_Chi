@@ -53,7 +53,7 @@ component_classes = [
     CRFEntityExtractor, DucklingHTTPExtractor,
     EntitySynonymMapper,
     SpacyFeaturizer, MitieFeaturizer, NGramFeaturizer, RegexFeaturizer,
-    MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer, JiebaTokenizer, YahaTokenizer,
+    MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer, JiebaTokenizer, #YahaTokenizer,
     SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier,
 ]
 
