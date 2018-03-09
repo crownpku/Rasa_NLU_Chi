@@ -1,12 +1,14 @@
-from __future__ import unicode_literals
-from __future__ import print_function
-from __future__ import division
 from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import os
 
 import numpy as np
 import pytest
 
+from rasa_nlu import training_data
 from rasa_nlu.tokenizers.mitie_tokenizer import MitieTokenizer
 from rasa_nlu.tokenizers.spacy_tokenizer import SpacyTokenizer
 from rasa_nlu.training_data import Message
@@ -89,3 +91,24 @@ def test_regex_featurizer(sentence, expected, labeled_tokens, spacy_nlp):
             assert token.get("pattern") in [0, 1]
         else:
             assert token.get("pattern") is None  # if the token is not part of a regex the pattern should not be set
+
+
+def test_spacy_featurizer_casing(spacy_nlp):
+    from rasa_nlu.featurizers import spacy_featurizer
+
+    # if this starts failing for the default model, we should think about
+    # removing the lower casing the spacy nlp component does when it
+    # retrieves vectors. For compressed spacy models (e.g. models
+    # ending in _sm) this test will most likely fail.
+
+    td = training_data.load_data('data/examples/rasa/demo-rasa.json')
+    for e in td.intent_examples:
+        doc = spacy_nlp(e.text)
+        doc_capitalized = spacy_nlp(e.text.capitalize())
+
+        vecs = spacy_featurizer.features_for_doc(doc)
+        vecs_capitalized = spacy_featurizer.features_for_doc(doc_capitalized)
+
+        assert np.allclose(vecs, vecs_capitalized, atol=1e-5), \
+            "Vectors are unequal for texts '{}' and '{}'".format(
+                    e.text, e.text.capitalize())

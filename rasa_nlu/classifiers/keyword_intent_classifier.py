@@ -31,11 +31,12 @@ class KeywordIntentClassifier(Component):
 
         _text = text.lower()
 
-        def is_present(x): return x in _text
+        def is_present(x):
+            return x in _text
 
         if any(map(is_present, self.his)):
             return "greet"
         elif any(map(is_present, self.byes)):
             return "goodbye"
         else:
-            return "None"
+            return None

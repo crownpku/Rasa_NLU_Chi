@@ -15,7 +15,6 @@
 
 Trained from Chinese corpus by MITIE wordrep tools (takes 2-3 days for training)
 
-
 For training, please build the [MITIE Wordrep Tool](https://github.com/mit-nlp/MITIE/tree/master/tools/wordrep). Note that Chinese corpus should be tokenized first before feeding into the tool for training. Close-domain corpus that best matches user case works best.
 
 A trained model from Chinese Wikipedia Dump and Baidu Baike can be downloaded from [中文Blog](http://www.crownpku.com/2017/07/27/%E7%94%A8Rasa_NLU%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AD%E6%96%87NLU%E7%B3%BB%E7%BB%9F.html).

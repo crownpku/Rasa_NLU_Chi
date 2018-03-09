@@ -19,6 +19,8 @@ The ``common_examples`` are used to train both the entity and the intent models.
 examples in the ``common_examples`` array. The next section describes in detail how an example looks like.
 Regex features are a tool to help the classifier detect entities or intents and improve the performance.
 
+You can use `Chatito <https://rodrigopivi.github.io/Chatito/>`__ , a tool for generating training datasets in rasa's format using a simple DSL.
+
 Common Examples
 ---------------
 
@@ -32,7 +34,7 @@ Entities are specified with a ``start`` and  ``end`` value, which together make 
 style range to apply to the string, e.g. in the example below, with ``text="show me chinese
 restaurants"``, then ``text[8:15] == 'chinese'``. Entities can span multiple words, and in
 fact the ``value`` field does not have to correspond exactly to the substring in your example.
-That way you can map syonyms, or misspellings, to the same ``value``.
+That way you can map synonyms, or misspellings, to the same ``value``.
 
 .. code-block:: json
 
@@ -127,7 +129,7 @@ the zipcode example it might look like this:
                 },
                 {
                     "name": "greet",
-                    "pattern": "hey[^\s]*"
+                    "pattern": "hey[^\\s]*"
                 },
             ]
         }
@@ -152,7 +154,8 @@ for these extractors. Currently, all intent classifiers make use of available re
 Markdown Format
 ---------------------------
 
-Alternatively training data can be used in the following markdown format (Regex features not supported yet). Examples are listed using the unordered list syntax, e.g. minus ``-`` or asterisk ``*``:
+Alternatively training data can be used in the following markdown format. Examples are listed using the unordered
+list syntax, e.g. minus ``-``, asterisk ``*``, or plus ``+``:
 
 .. code-block:: markdown
 
@@ -167,3 +170,20 @@ Alternatively training data can be used in the following markdown format (Regex 
 
     ## synonym:savings   <!-- synonyms, method 2 -->
     - pink pig
+
+
+    ## regex:zipcode
+    - [0-9]{5}
+
+Organization
+---------------------------
+
+The training data can either be stored in a single file or split into multiple files.
+For larger training examples, splitting the training data into multiple files, e.g. one per intent, increases maintainability.
+
+Storing files with different file formats, i.e. mixing markdown and JSON, is currently not supported.
+
+.. note::
+    Splitting the training data into multiple files currently only works for markdown and JSON data.
+    For other file formats you have to use the single-file approach.
+

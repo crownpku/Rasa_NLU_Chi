@@ -3,23 +3,22 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import io
 import logging
 import os
 
 import requests
 import simplejson
-from builtins import str
 from typing import Any, Dict
 from typing import List
 from typing import Optional
 from typing import Text
 
+from rasa_nlu import utils
 from rasa_nlu.config import RasaNLUConfig
 from rasa_nlu.extractors import EntityExtractor
+from rasa_nlu.extractors.duckling_extractor import extract_value
 from rasa_nlu.model import Metadata
 from rasa_nlu.training_data import Message
-from rasa_nlu.extractors.duckling_extractor import extract_value
 from rasa_nlu.utils import write_json_to_file
 
 logger = logging.getLogger(__name__)
@@ -33,7 +32,7 @@ class DucklingHTTPExtractor(EntityExtractor):
     provides = ["entities"]
 
     def __init__(self, duckling_url, language, dimensions=None):
-        # type: (Text, Optional[List[Text]]) -> None
+        # type: (Text, Text, Optional[List[Text]]) -> None
 
         super(DucklingHTTPExtractor, self).__init__()
         self.dimensions = dimensions
@@ -52,7 +51,11 @@ class DucklingHTTPExtractor(EntityExtractor):
         """Sends the request to the duckling server and parses the result."""
 
         try:
-            payload = {"text": text, "lang": self.language}
+            # TODO: this is king of a quick fix to generate a proper locale
+            #       for duckling. and might not always create correct
+            #       locales. We should rather introduce a new config value.
+            locale = "{}_{}".format(self.language, self.language.upper())
+            payload = {"text": text, "locale": locale}
             headers = {"Content-Type": "application/x-www-form-urlencoded; "
                                        "charset=UTF-8"}
             response = requests.post(self.duckling_url + "/parse",
@@ -104,6 +107,10 @@ class DucklingHTTPExtractor(EntityExtractor):
                     "entity": match["dim"]}
 
                 extracted.append(entity)
+        else:
+            logger.warn("Duckling HTTP component in pipeline, but no "
+                        "`duckling_http_url` configuration in the config "
+                        "file.")
 
         extracted = self.add_extractor_name(extracted)
         message.set("entities",
@@ -132,9 +139,8 @@ class DucklingHTTPExtractor(EntityExtractor):
         dimensions = None
 
         if os.path.isfile(persisted):
-            with io.open(persisted, encoding='utf-8') as f:
-                persisted_data = simplejson.loads(f.read())
-                dimensions = persisted_data["dimensions"]
+            persisted_data = utils.read_json_file(persisted)
+            dimensions = persisted_data["dimensions"]
 
         return DucklingHTTPExtractor(config.get("duckling_http_url"),
                                      model_metadata.get("language"),

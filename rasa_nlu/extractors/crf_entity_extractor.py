@@ -42,6 +42,7 @@ class CRFEntityExtractor(EntityExtractor):
         'title': lambda doc: doc[0].istitle(),
         'word3': lambda doc: doc[0][-3:],
         'word2': lambda doc: doc[0][-2:],
+        'word1': lambda doc: doc[0][-1:],
         'pos': lambda doc: doc[1],
         'pos2': lambda doc: doc[1][:2],
         'bias': lambda doc: 'bias',
@@ -73,6 +74,8 @@ class CRFEntityExtractor(EntityExtractor):
                 ['low', 'title', 'upper', 'pos', 'pos2']
             ]
         else:
+            if len(entity_crf_features) % 2 != 1:
+                raise ValueError("Need an odd number of crf feature lists to have a center word.")
             self.crf_features = entity_crf_features
 
     @classmethod
@@ -92,9 +95,12 @@ class CRFEntityExtractor(EntityExtractor):
         self.L1_C = config.get("L1_c", 1)
         self.L2_C = config.get("L2_c", 1e-3)
 
+        # checks whether there is at least one example with an entity annotation
         if training_data.entity_examples:
             # convert the dataset into features
-            dataset = self._create_dataset(training_data.entity_examples)
+            # this will train on ALL examples, even the ones
+            # without annotations
+            dataset = self._create_dataset(training_data.training_examples)
             # train the model
             self._train_model(dataset)
 
@@ -163,7 +169,7 @@ class CRFEntityExtractor(EntityExtractor):
                     finished = False
                     while not finished:
                         if len(entities) > ent_word_idx and \
-                                        entities[ent_word_idx][2:] != entity[2:]:
+                                entities[ent_word_idx][2:] != entity[2:]:
                             # words are not tagged the same entity class
                             logger.debug(
                                     "Inconsistent BILOU tagging found, B- tag, "
@@ -211,10 +217,10 @@ class CRFEntityExtractor(EntityExtractor):
 
     @classmethod
     def load(cls,
-             model_dir,     # type: Text
-             model_metadata,    # type: Metadata
+             model_dir,  # type: Text
+             model_metadata,  # type: Metadata
              cached_component,  # type: Optional[CRFEntityExtractor]
-             **kwargs   # type: **Any
+             **kwargs  # type: **Any
              ):
         # type: (...) -> CRFEntityExtractor
         from sklearn.externals import joblib
@@ -255,19 +261,23 @@ class CRFEntityExtractor(EntityExtractor):
         sentence_features = []
         for word_idx in range(len(sentence)):
             # word before(-1), current word(0), next word(+1)
-            prefixes = ['-1', '0', '+1']
+            feature_span = len(self.crf_features)
+            half_span = feature_span // 2
+            feature_range = range(- half_span, half_span + 1)
+            prefixes = [str(i) for i in feature_range]
             word_features = {}
-            for i in range(3):
-                if word_idx == len(sentence) - 1 and i == 2:
+            for f_i in feature_range:
+                if word_idx + f_i >= len(sentence):
                     word_features['EOS'] = True
                     # End Of Sentence
-                elif word_idx == 0 and i == 0:
+                elif word_idx + f_i < 0:
                     word_features['BOS'] = True
                     # Beginning Of Sentence
                 else:
-                    word = sentence[word_idx - 1 + i]
-                    prefix = prefixes[i]
-                    features = self.crf_features[i]
+                    word = sentence[word_idx + f_i]
+                    f_i_from_zero = f_i + half_span
+                    prefix = prefixes[f_i_from_zero]
+                    features = self.crf_features[f_i_from_zero]
                     for feature in features:
                         # append each feature to a feature vector
                         value = self.function_dict[feature](word)
@@ -298,7 +308,7 @@ class CRFEntityExtractor(EntityExtractor):
                         entity.startswith('I-') or \
                         entity.startswith('U-') or \
                         entity.startswith('L-'):
-                    ents[i] = entity[2:]        # removes the BILOU tags
+                    ents[i] = entity[2:]  # removes the BILOU tags
 
         return self._from_text_to_crf(message, ents)
 
@@ -308,6 +318,13 @@ class CRFEntityExtractor(EntityExtractor):
         else:
             return None
 
+    def __tag_of_token(selfself, token):
+        import spacy
+        if spacy.about.__version__ > "2" and token._.has("tag"):
+            return token._.get("tag")
+        else:
+            return token.tag_
+
     def _from_text_to_crf(self, message, entities=None):
         # type: (Message, List[Text]) -> List[Tuple[Text, Text, Text, Text]]
         """Takes a sentence and switches it to crfsuite format."""
@@ -316,7 +333,8 @@ class CRFEntityExtractor(EntityExtractor):
         for i, token in enumerate(message.get("spacy_doc")):
             pattern = self.__pattern_of_token(message, i)
             entity = entities[i] if entities else "N/A"
-            crf_format.append((token.text, token.tag_, entity, pattern))
+            tag = self.__tag_of_token(token)
+            crf_format.append((token.text, tag, entity, pattern))
         return crf_format
 
     def _train_model(self, df_train):
@@ -334,40 +352,3 @@ class CRFEntityExtractor(EntityExtractor):
                 all_possible_transitions=True  # include transitions that are possible, but not observed
         )
         self.ent_tagger.fit(X_train, y_train)
-
-    def _test_model(self, df_test):
-        # type: (List[List[Tuple[Text, Text, Text, Text]]]) -> None
-
-        X_test = [self._sentence_to_features(sent) for sent in df_test]
-        y_test = [self._sentence_to_labels(sent) for sent in df_test]
-        y_pred = [self.ent_tagger.predict_single(xseq) for xseq in X_test]
-        print(bio_classification_report(y_test, y_pred))
-
-
-def bio_classification_report(y_true, y_pred):
-    """Evaluates entity extraction accuracy.
-
-    Classification report for a list of BIO-encoded sequences.
-    It computes token-level metrics and discards "O" labels.
-    Note that it requires scikit-learn 0.15+ (or a version from github master)
-    to calculate averages properly!
-    Taken from https://github.com/scrapinghub/python-crfsuite/blob/master/examples/CoNLL%202002.ipynb
-    """
-    from sklearn.preprocessing import LabelBinarizer
-    from itertools import chain
-    from sklearn.metrics import classification_report
-
-    lb = LabelBinarizer()
-    y_true_combined = lb.fit_transform(list(chain.from_iterable(y_true)))
-    y_pred_combined = lb.transform(list(chain.from_iterable(y_pred)))
-
-    tagset = set(lb.classes_) - {'O'}
-    tagset = sorted(tagset, key=lambda tag: tag.split('-', 1)[::-1])
-    class_indices = {cls: idx for idx, cls in enumerate(lb.classes_)}
-
-    return classification_report(
-            y_true_combined,
-            y_pred_combined,
-            labels=[class_indices[cls] for cls in tagset],
-            target_names=tagset,
-    )
