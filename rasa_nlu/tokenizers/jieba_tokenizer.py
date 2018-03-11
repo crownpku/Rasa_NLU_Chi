@@ -16,10 +16,6 @@ from rasa_nlu.training_data import TrainingData
 
 import glob
 import jieba
-# Add jieba userdict file
-jieba_userdicts = glob.glob("./jieba_userdict/*")
-for jieba_userdict in jieba_userdicts:
-    jieba.load_userdict(jieba_userdict)
 
 
 class JiebaTokenizer(Tokenizer, Component):
@@ -29,14 +25,26 @@ class JiebaTokenizer(Tokenizer, Component):
 
     provides = ["tokens"]
     
-    def __init__(self):
-        pass
+    def __init__(self, jieba_dict_dir):
+        # Add jieba userdict file
+        jieba_userdicts = glob.glob(jieba_dict_dir+"/*")
+        for jieba_userdict in jieba_userdicts:
+            jieba.load_userdict(jieba_userdict)
        
 
     @classmethod
     def required_packages(cls):
         # type: () -> List[Text]
         return ["jieba"]
+
+    @classmethod
+    def create(cls, config):
+        return cls(config['jieba_dict_dir'])
+
+    @classmethod
+    def load(cls, model_dir=None, model_metadata=None, cached_component=None, **kwargs):
+        config = kwargs['config']
+        return cached_component if cached_component else cls(config['jieba_dict_dir'])
 
     def train(self, training_data, config, **kwargs):
         # type: (TrainingData, RasaNLUConfig, **Any) -> None
