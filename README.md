@@ -48,7 +48,7 @@ RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.
 
 3. Train model by running:
 
-**To use Jieba User Defined Dictionary, please put your dictionary files under rasa_nlu_chi/jieba_userdict/ before you do training and testing.**
+**To use Jieba User Defined Dictionary, please put your dictionary files under rasa_nlu_chi/jieba_userdict/ before you do training and testing. If you install rasa_nlu_chi by running setup.py, then you should find the installation path $RASA_NLU_PATH and put your dictionary files under $RASA_NLU_PATH/jieba_userdict/**
 
 ```
 python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.json
