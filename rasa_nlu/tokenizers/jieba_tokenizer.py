@@ -18,8 +18,12 @@ import glob
 import jieba
 # Add jieba userdict file
 jieba_userdicts = glob.glob("./jieba_userdict/*")
-for jieba_userdict in jieba_userdicts:
-    jieba.load_userdict(jieba_userdict)
+if len(jieba_userdicts) > 0:
+    for jieba_userdict in jieba_userdicts:
+        print("Loading Jieba User Dictionary at " + str(jieba_userdict))
+        jieba.load_userdict(jieba_userdict)
+else:
+    print("No Jieba User Dictionary found.")
 
 
 class JiebaTokenizer(Tokenizer, Component):
