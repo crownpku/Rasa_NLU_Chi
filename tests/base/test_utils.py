@@ -10,10 +10,10 @@ import tempfile
 
 import pytest
 
+from rasa_nlu import utils
 from rasa_nlu.utils import (
-    relative_normpath, recursively_find_files,
-    create_dir,
-    ordered, is_model_dir, remove_model, write_json_to_file, write_to_file)
+    relative_normpath, create_dir, is_url, ordered, is_model_dir, remove_model,
+    write_json_to_file, write_to_file)
 
 
 @pytest.fixture
@@ -30,16 +30,25 @@ def test_relative_normpath():
     assert relative_normpath(None, "/my/test") is None
 
 
-def test_recursively_find_files_invalid_resource():
+def test_list_files_invalid_resource():
     with pytest.raises(ValueError) as execinfo:
-        recursively_find_files(None)
+        utils.list_files(None)
     assert "must be a string type" in str(execinfo.value)
 
 
-def test_recursively_find_files_non_existing_dir():
+def test_list_files_non_existing_dir():
     with pytest.raises(ValueError) as execinfo:
-        recursively_find_files("my/made_up/path")
+        utils.list_files("my/made_up/path")
     assert "Could not locate the resource" in str(execinfo.value)
+
+
+def test_list_files_ignores_hidden_files(tmpdir):
+    # create a hidden file
+    open(os.path.join(tmpdir.strpath, ".hidden"), 'a').close()
+    # create a normal file
+    normal_file = os.path.join(tmpdir.strpath, "normal_file")
+    open(normal_file, 'a').close()
+    assert utils.list_files(tmpdir.strpath) == [normal_file]
 
 
 def test_creation_of_existing_dir(tmpdir):
@@ -94,3 +103,8 @@ def test_remove_model_invalid(empty_model_dir):
         remove_model(empty_model_dir)
 
     os.remove(test_file_path)
+
+
+def test_is_url():
+    assert not is_url('./some/file/path')
+    assert is_url('https://rasa.com/')
