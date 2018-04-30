@@ -1,0 +1,15 @@
+language: "zh"
+
+pipeline:
+- name: "nlp_mitie"
+  model: "data/total_word_feature_extractor_zh.dat"
+- name: "tokenizer_jieba"
+  default_dict: "./default_dict.big"
+  user_dicts: "./jieba_userdict"
+# you can put in file path or directory path as the "user_dicts" value
+#  user_dicts: "./jieba_userdict/jieba_userdict.txt"
+- name: "ner_mitie"
+- name: "ner_synonyms"
+- name: "intent_entity_featurizer_regex"
+- name: "intent_featurizer_mitie"
+- name: "intent_classifier_sklearn"
