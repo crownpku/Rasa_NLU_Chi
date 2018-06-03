@@ -66,7 +66,7 @@ pipeline:
 
 3. (Optional) Use Jieba User Defined Dictionary or Switch Jieba Default Dictionoary:
 
-You can put in **file path** or **directory path** as the "user_dicts" value. (sample_configs/config_jieba_mitie_sklearn_plus_dict_path.yml)
+   You can put in **file path** or **directory path** as the "user_dicts" value. (sample_configs/config_jieba_mitie_sklearn_plus_dict_path.yml)
 
 ```yaml
 language: "zh"
@@ -91,9 +91,9 @@ pipeline:
 python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.yml --data data/examples/rasa/demo-rasa_zh.json --path models
 ```
 
-If you specify your project name in configure file, this will save your model at /models/your_project_name. 
+   If you specify your project name in configure file, this will save your model at /models/your_project_name. 
 
-Otherwise, your model will be saved at /models/default
+   Otherwise, your model will be saved at /models/default
 
 
 5. Run the rasa_nlu server:
