@@ -33,9 +33,9 @@ python setup.py install
 
 2. Modify configuration. 
 
-Currently for Chinese we have two pipelines:
+   Currently for Chinese we have two pipelines:
 
-Use MITIE+Jieba (sample_configs/config_jieba_mitie.yml):
+   Use MITIE+Jieba (sample_configs/config_jieba_mitie.yml):
 ```yaml
 language: "zh"
 
@@ -49,7 +49,7 @@ pipeline:
 - name: "intent_classifier_mitie"
 ```
 
-RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.yml):
+   RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.yml):
 ```yaml
 language: "zh"
 
