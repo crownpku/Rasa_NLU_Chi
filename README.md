@@ -87,13 +87,13 @@ pipeline:
 
 4. Train model by running:
 
-```
-python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.yml --data data/examples/rasa/demo-rasa_zh.json --path models
-```
-
    If you specify your project name in configure file, this will save your model at /models/your_project_name. 
 
    Otherwise, your model will be saved at /models/default
+
+```
+python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.yml --data data/examples/rasa/demo-rasa_zh.json --path models
+```
 
 
 5. Run the rasa_nlu server:
