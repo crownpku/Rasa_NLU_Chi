@@ -35,7 +35,7 @@ python setup.py install
 
 Currently for Chinese we have two pipelines:
 
-Use MITIE+Jieba (sample_configs/config_jieba_mitie.json):
+Use MITIE+Jieba (sample_configs/config_jieba_mitie.yml):
 ```yaml
 language: "zh"
 
@@ -66,7 +66,7 @@ pipeline:
 
 3. Use Jieba User Defined Dictionary or Switch Jieba Default Dictionoary
 
-You can put in file path or directory path as the "user_dicts" value. (sample_configs/config_jieba_mitie_sklearn_plus_dict_path.yml)
+You can put in **file path** or **directory path** as the "user_dicts" value. (sample_configs/config_jieba_mitie_sklearn_plus_dict_path.yml)
 
 ```yaml
 language: "zh"
