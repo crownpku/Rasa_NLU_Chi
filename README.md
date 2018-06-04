@@ -28,7 +28,6 @@ Should add as much examples as possible.
 
 ### Usage:
 
-
 1. Clone this project, and run
 ```
 python setup.py install
@@ -36,40 +35,77 @@ python setup.py install
 
 2. Modify configuration. 
 
-Currently for Chinese we have two pipelines:
+   Currently for Chinese we have two pipelines:
 
-Use MITIE+Jieba (sample_configs/config_jieba_mitie.json):
+   Use MITIE+Jieba (sample_configs/config_jieba_mitie.yml):
+```yaml
+language: "zh"
 
-["nlp_mitie", "tokenizer_jieba", "ner_mitie", "ner_synonyms", "intent_classifier_mitie"]
-
-RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.json):
-
-["nlp_mitie", "tokenizer_jieba", "ner_mitie", "ner_synonyms", "intent_featurizer_mitie", "intent_classifier_sklearn"]
-
-
-
-3. Train model by running:
-
-**To use Jieba User Defined Dictionary, please put your dictionary files under rasa_nlu_chi/jieba_userdict/ before you do training and testing. If you install rasa_nlu_chi by running setup.py, then you should find the installation path $RASA_NLU_PATH and put your dictionary files under $RASA_NLU_PATH/jieba_userdict/**
-
-```
-python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.json
+pipeline:
+- name: "nlp_mitie"
+  model: "data/total_word_feature_extractor_zh.dat"
+- name: "tokenizer_jieba"
+- name: "ner_mitie"
+- name: "ner_synonyms"
+- name: "intent_entity_featurizer_regex"
+- name: "intent_classifier_mitie"
 ```
 
-If you specify your project name in configure file, this will save your model at /models/your_project_name. 
+   RECOMMENDED: Use MITIE+Jieba+sklearn (sample_configs/config_jieba_mitie_sklearn.yml):
+```yaml
+language: "zh"
 
-Otherwise, your model will be saved at /models/default
+pipeline:
+- name: "nlp_mitie"
+  model: "data/total_word_feature_extractor_zh.dat"
+- name: "tokenizer_jieba"
+- name: "ner_mitie"
+- name: "ner_synonyms"
+- name: "intent_entity_featurizer_regex"
+- name: "intent_featurizer_mitie"
+- name: "intent_classifier_sklearn"
+```
 
+3. (Optional) Use Jieba User Defined Dictionary or Switch Jieba Default Dictionoary:
 
+   You can put in **file path** or **directory path** as the "user_dicts" value. (sample_configs/config_jieba_mitie_sklearn_plus_dict_path.yml)
 
-4. Run the rasa_nlu server:
+```yaml
+language: "zh"
+
+pipeline:
+- name: "nlp_mitie"
+  model: "data/total_word_feature_extractor_zh.dat"
+- name: "tokenizer_jieba"
+  default_dict: "./default_dict.big"
+  user_dicts: "./jieba_userdict"
+#  user_dicts: "./jieba_userdict/jieba_userdict.txt"
+- name: "ner_mitie"
+- name: "ner_synonyms"
+- name: "intent_entity_featurizer_regex"
+- name: "intent_featurizer_mitie"
+- name: "intent_classifier_sklearn"
+```
+
+4. Train model by running:
+
+   If you specify your project name in configure file, this will save your model at /models/your_project_name. 
+
+   Otherwise, your model will be saved at /models/default
 
 ```
-python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.json
+python -m rasa_nlu.train -c sample_configs/config_jieba_mitie_sklearn.yml --data data/examples/rasa/demo-rasa_zh.json --path models
 ```
 
 
-5. Open a new terminal and now you can curl results from the server, for example:
+5. Run the rasa_nlu server:
+
+```
+python -m rasa_nlu.server -c sample_configs/config_jieba_mitie_sklearn.yml --path models
+```
+
+
+6. Open a new terminal and now you can curl results from the server, for example:
 
 ```
 $ curl -XPOST localhost:5000/parse -d '{"q":"我发烧了该吃什么药？", "project": "rasa_nlu_test", "model": "model_20170921-170911"}' | python -mjson.tool
