@@ -26,7 +26,7 @@ pytest-services==1.2.1
 pytest-cov==2.5.1
 pytest-twisted==1.6
 pytest==3.3.2
-treq==17.8.0
+treq==22.1.0
 moto==1.2.0
 mock==2.0.0
 # other
