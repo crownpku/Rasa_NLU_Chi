@@ -1,4 +1,4 @@
-gevent==1.2.2
+gevent==23.9.1
 klein==17.10.0
 hyperlink==17.3.1
 boto3==1.5.20
